@@ -1,0 +1,39 @@
+.typoid{
+   display: flex;
+   justify-content: end;
+   height:100px;
+   left:0;
+   position:absolute;
+   bottom:0;
+   right:0;
+   padding:10;
+}
+
+.but{
+    margin-right: 0px;
+}
+
+
+.textfield label{
+  font-size: 25px;
+  padding-bottom: 4px;
+  color:black
+}
+
+
+.box{
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+}
+
+.textsection label{
+  font-size: 22px;
+}
+
+.form{
+  height: 50px;
+  display: flex;
+  width:auto
+}
+

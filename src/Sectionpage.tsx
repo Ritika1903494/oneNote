@@ -196,20 +196,18 @@ export const Sectionpage = () => {
     setTitle(false)
     setPop2(true)
   }
-  const contentSubmit=() =>{
-  
-    console.log("postcontent",postcontent)
+  const contentSubmit=(newcontent:string) =>{
+    console.log("postcontent",newcontent)
     const page_id:number=getPageID("page_id")
-    post_content(postcontent,page_id)
+    post_content(newcontent,page_id)
     postContent('')
   }
 
-  const updatecontentSubmit=() =>{
-    console.log("updatecontent",content)
+  const updatecontentSubmit=(newupdatecontent:string) =>{
+    console.log("updatecontent",newupdatecontent)
     const content_id:number=getContentID("content_id")
     console.log("updatecontent",content_id)
-    update_content(content_id,content)
-   
+    update_content(content_id,newupdatecontent)
   }
   
 
@@ -497,7 +495,10 @@ paddingRight:2
             formats={formats}
             modules={modules} 
             />  
-            <IconButton edge="end"  onClick={contentSubmit} disableRipple>
+            <IconButton edge="end"  onClick={()=>{
+               const newcontent:string=postcontent.replace(/<[^>]+>/g,'')
+               console.log(newcontent)
+              contentSubmit(newcontent)} } disableRipple>
             <FileDownloadDoneIcon color="secondary" className="editbut"/>
             </IconButton>
         </div>
@@ -511,7 +512,10 @@ paddingRight:2
         formats={formats}
         modules={modules} 
         />  
-        <IconButton edge="end"  onClick={updatecontentSubmit} disableRipple>
+        <IconButton edge="end"  onClick={()=>{
+           const newupdatecontent:string=content.replace(/<[^>]+>/g,'')
+               console.log(newupdatecontent)
+          updatecontentSubmit(newupdatecontent)}} disableRipple>
         <FileDownloadDoneIcon color="secondary" sx={{paddingRight:"4px",display:"flex",fontSize:"30px",top:"-816px"}}/>
         </IconButton>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import{Grid,Typography,Box,Popover,IconButton, InputAdornment,Button,TextField,Menu,MenuItem,List,ListItem,ListItemButton,ListItemText}from '@mui/material';
+import{Grid,Typography,Box,Popover,IconButton,Button,TextField,Menu,MenuItem,List,ListItem,ListItemButton,ListItemText}from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import AddIcon from '@mui/icons-material/Add';
 import{useState,useEffect} from 'react';
@@ -11,8 +11,6 @@ import FileDownloadDoneIcon from '@mui/icons-material/FileDownloadDone';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import'./quill-style.css';
-
-import { Editor } from './Editor';
 type data={
   note_name:string;
 }

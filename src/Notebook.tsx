@@ -4,30 +4,32 @@ import EditNoteIcon from '@mui/icons-material/EditNote';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import LabelImportantIcon from '@mui/icons-material/LabelImportant';
 import'./style.css';
-import { useNavigate} from "react-router-dom";
 import{useState,useEffect} from 'react';
 import { Dialogs } from './Dialogs';
 import { Navbar } from './Navbar';
 import { get_notebooks } from './Services';
 import { setNotebook, setSection} from './Local_service';
+import { Sectionpage } from './Sectionpage';
+import axios from 'axios';
 type data={
   note_name:string;
 }
 
 export const Notebook = () => {
     const[dialog,setDialog]=useState<boolean>(false);
+    const[openSectionpage,setSectionpage]=useState<boolean>(false);
      const[Data,setData]=useState<data|string>("");
-     let navigate = useNavigate(); 
     const handleChange=() =>{
         setDialog(true)
     }
-
+     
+    let Note_name:string;
     const RouteChange = (note_name:string,note_id:number) =>{
+      Note_name=note_name;
       setNotebook("note_name",note_name)
       setSection("note_id",note_id)
-      let path = `/SectionPage`; 
-      navigate(path);
-      return
+      setSectionpage(true)
+     
     }
       const getData=async()=>{
         let response:any = await get_notebooks();
@@ -38,16 +40,16 @@ export const Notebook = () => {
         }
     }
    
-    useEffect(() => {
-        getData()
-      },[Data]);
+    let original_data=Object.values(Data)
+    useEffect( () => {
+       getData()
+      },[]);
 
-     let original_data=Object.values(Data)
   return (
      <>
      <Navbar/>
-     <Grid container sx={{width:"100%"}}>
-     <Grid item xs={2} sx={{ boxShadow: "2px 2px 2px grey", position:"relative",height:'100vh'}}>
+     <Grid container sx={{width:"100%",display:"flex",flexDirection:"row"}}>
+     <Grid item xs={1.5} sx={{ boxShadow: "2px 2px 2px grey", position:"relative",height:'100vh'}}>
      <Typography variant='h1' component='div' sx={{fontSize:"26px",display:"flex",justifyContent:"start",paddingLeft:2}}>
     <IconButton  edge='start' disableRipple sx={{padding:0 }}>
         <FormatListNumberedIcon sx={{ color:"black",fontSize:"40px"}} />
@@ -59,7 +61,7 @@ export const Notebook = () => {
        
                 <Typography sx={{overflow:"hidden",minHeight:"100px",
                 '& .MuiTypography-root': {
-                  fontSize:"21px",
+                  fontSize:"22px",
                }}}>
                          <List>
                          {original_data && original_data.length && (
@@ -71,9 +73,9 @@ export const Notebook = () => {
                          <ListItem  divider disablePadding>
                           <ListItemButton disableRipple sx={{padding:"2px"}} onClick={() =>{RouteChange(item.note_name,item.note_id)}}>
                           <ListItemIcon sx={{minWidth:"21px"}}>
-                            <LabelImportantIcon  />
+                            <LabelImportantIcon  sx={{color:"black"}}/>
                           </ListItemIcon>
-                          <ListItemText primary={item.note_name} />
+                          <ListItemText primary={item.note_name}  sx={{color:"grey"}}/>
                           </ListItemButton>
                          </ListItem>
                        </> ) }
@@ -99,6 +101,11 @@ export const Notebook = () => {
         </Box>
        
      </Grid>
+     {openSectionpage && openSectionpage===true &&
+          <Grid item xs={10.5}>
+           <Sectionpage />
+           </Grid>
+     }
      </Grid>
      <Dialogs dialog={dialog} setDialog={setDialog} />
      </>

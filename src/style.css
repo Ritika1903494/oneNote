@@ -1,3 +1,4 @@
+
 .typoid{
    display: flex;
    justify-content: end;
@@ -35,5 +36,16 @@
   height: 50px;
   display: flex;
   width:auto
+}
+
+.editor{
+ height:94vh;
+}
+
+.editbut{
+  padding-right:4px;
+  display:"flex";
+  font-size:30px;
+  top:-816px;
 }
 

@@ -15,7 +15,7 @@ export const Navbar = () => {
             <MenuIcon sx={{fontSize:"40px"}}/>
         </IconButton> */}
         <Typography variant='h5' component='div' sx={{flexGrow:1,fontSize:"30px"}}>
-            beboNote
+            oneNote
             <IconButton  edge='end' disableRipple sx={{color:"white"}}><EventNoteIcon sx={{fontSize:"40px"}} />
             </IconButton>
         </Typography>
